@@ -9,6 +9,7 @@ import (
 	"github.com/ahmetgurcand/bookings-app/pkg/config"
 	"github.com/ahmetgurcand/bookings-app/pkg/models"
 	"github.com/ahmetgurcand/bookings-app/pkg/render"
+	"github.com/ahmetgurcand/bookings-app/pkg/forms"
 )
 
 // Repo the repository used by the handlers
@@ -56,7 +57,14 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 
 // Reservation renders the make a reservation page and displays form
 func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{
+		Form: forms.New(nil),
+	})
+}
+
+// PostReservation handles the posting of a reservation
+func (m *Repository) PostReservation(w http.ResponseWriter, r *http.Request) {
+	
 }
 
 // Generals renders the room page
